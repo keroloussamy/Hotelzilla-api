@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: %i[show destroy]
 
   # GET /users
-  def index 
+  def index
     @users = User.all
     render json: @users, status: :ok
   end
 
   # GET /users/{username}
-  def show 
+  def show
     render json: @user, status: :ok
   end
 
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: { errors: @user.errors.full_messages }, 
-            status: :unprocessible_entity
+      render json: { errors: @user.errors.full_messages },
+             status: :unprocessible_entity
     end
   end
 
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update
     unless @user.update(user_params)
       render json: { errors: @user.errors.full_messages },
-              status: :unprocessible_entity
+             status: :unprocessible_entity
     end
   end
 
@@ -38,12 +38,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.permit(:name, :username, :email, :password) #role
-    end
 
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def user_params
+    params.permit(:name, :username, :email, :password) # role
+  end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
 end
