@@ -6,6 +6,8 @@ class CreateHotels < ActiveRecord::Migration[7.0]
       t.float :rating
       t.string :image
 
+      t.references :city, null: false, foreign_key: true
+      
       t.timestamps
     end
   end
