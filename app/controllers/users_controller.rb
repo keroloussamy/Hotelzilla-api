@@ -32,4 +32,9 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE /users/{username}
+  def destroy
+    @user.destroy
+  end
+
 end
