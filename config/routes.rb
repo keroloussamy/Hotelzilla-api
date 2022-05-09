@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api, defaults: { format: :json} do
-    resources :hotels do
-      resources :rooms 
-    end
+    resources :hotels 
+    
+    resources :rooms 
 
     resources :cities
 
