@@ -1,6 +1,5 @@
 module Api
   class RoomsController < ApplicationController
-    # before_action :set_room
 
     def index
       @rooms = room.all
@@ -10,7 +9,7 @@ module Api
   
     # GET /rooms/1
     def show
-      @room = room.find(params[:id])
+      @room = Room.find(params[:id])
       render json: @room
     end
   
@@ -20,7 +19,7 @@ module Api
       @room = @room_hotel.rooms.new(room_params)
 
       if @room.save
-        render json: @room, status: :created, location: @room
+        render json: @room, status: :created, location: api_hotel_rooms_path(@room)
       else
         render json: @room.errors, status: :unprocessable_entity
       end
@@ -36,15 +35,13 @@ module Api
     end
     
     def destroy
+      @room = Room.find(params[:id]) 
+
       @room.destroy
       render json: { user: @room, message: 'room has successfully been deleted' }
     end
 
     private
-
-    # def set_room
-    #   @room = room.find(params[:id]) 
-    # end
 
     def room_params
       params.permit(:name, :hotel_id)

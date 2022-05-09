@@ -19,7 +19,7 @@ module Api
       @city = City.new(city_params)
   
       if @city.save
-        render json: @city, status: :created, location: @city
+        render json: @city, status: :created, location: api_city_path(@city)
       else
         render json: @city.errors, status: :unprocessable_entity
       end
