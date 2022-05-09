@@ -27,6 +27,8 @@ module Api
 
     # PATCH/PUT /hotels/1
     def update
+      @hotel = Hotel.find(params[:id])
+
       if @hotel.update(hotel_params)
         render json: @hotel
       else

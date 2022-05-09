@@ -14,11 +14,10 @@ module Api
 
     # POST /rooms
     def create
-      @room_hotel = Hotel.find(params[:hotel_id])
-      @room = @room_hotel.rooms.new(room_params)
+      @room = Room.new(room_params)
 
       if @room.save
-        render json: @room, status: :created, location: api_hotel_rooms_path(@room)
+        render json: @room
       else
         render json: @room.errors, status: :unprocessable_entity
       end
@@ -26,6 +25,8 @@ module Api
 
     # PATCH/PUT /rooms/1
     def update
+      @room = Room.find(params[:id])
+
       if @room.update(room_params)
         render json: @room
       else

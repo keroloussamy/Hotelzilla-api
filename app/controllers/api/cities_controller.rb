@@ -27,6 +27,8 @@ module Api
 
     # PATCH/PUT /cities/1
     def update
+      @city = City.find(params[:id])
+
       if @city.update(city_params)
         render json: @city
       else
