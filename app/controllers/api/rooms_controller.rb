@@ -1,7 +1,7 @@
 module Api
   class RoomsController < ApplicationController
     def index
-      @rooms = room.all
+      @rooms = Room.all
 
       render json: @rooms
     end
@@ -37,7 +37,7 @@ module Api
       @room = Room.find(params[:id])
 
       @room.destroy
-      render json: { user: @room, message: 'room has successfully been deleted' }
+      render json: { room: @room, message: 'room has successfully been deleted' }
     end
 
     private

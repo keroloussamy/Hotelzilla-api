@@ -37,7 +37,7 @@ module Api
     def destroy
       @city = City.find(params[:id])
       @city.destroy
-      render json: { user: @city, message: 'City has successfully been deleted' }
+      render json: { city: @city, message: 'City has successfully been deleted' }
     end
 
     private

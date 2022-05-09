@@ -12,11 +12,5 @@ Rails.application.routes.draw do
 
     resources :cities
 
-  
-    # post 'users/register', to: 'authentication#register'
-    # post 'users/login', to: 'authentication#login'
-    # get 'posts', to: 'api#posts_index'
-    # get 'comments', to: 'api#list_comments'
-    # post 'new_comment', to: 'api#create_comment'
   end
 end
