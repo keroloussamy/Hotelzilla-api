@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user, only: %i[show destroy]
+  # before_action :set_user, only: %i[show destroy]
 
   # GET /users
   def index
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   # GET /users/{username}
   def show
+    @user = User.find(params[:id])
     render json: @user, status: :ok
   end
 
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/{username}
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
   end
 
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
     params.permit(:name, :username, :email, :password) # role
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
+  # def set_user
+  #   @user = User.find(params[:id])
+  # end
 end
