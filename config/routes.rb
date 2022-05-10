@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json} do
     resources :hotels 
     
-    resources :rooms 
+    resources :room_types, only: [:index]
 
-    resources :cities
+    resources :cities, only: [:index]
 
   end
 end
