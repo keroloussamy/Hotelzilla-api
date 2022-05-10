@@ -4,8 +4,9 @@ class CreateReservations < ActiveRecord::Migration[7.0]
       t.date :date
 
       t.references :user, null: false, foreign_key: true
-      t.references :room, null: false, foreign_key: true
-
+      t.references :hotel, null: false, foreign_key: true
+      t.references :room_type, null: false, foreign_key: true
+      
       t.timestamps
     end
   end
