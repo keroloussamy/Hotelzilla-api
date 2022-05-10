@@ -1,22 +1,21 @@
 module Api
   class HotelsController < ApplicationController
+    skip_before_action :authenticate_request, only: [:index]
+
     def index
       @hotels = Hotel.all
-
       render json: @hotels
     end
 
     # GET /hotels/1
     def show
       @hotel = Hotel.find(params[:id])
-
       render json: @hotel
     end
 
     # POST /hotels
     def create
       @hotel = Hotel.new(hotel_params)
-      # @hotel.city_id = City.id
 
       if @hotel.save
         render json: @hotel, status: :created, location: api_hotel_path(@hotel)
@@ -45,7 +44,7 @@ module Api
     private
 
     def hotel_params
-      params.permit(:name, :city_id)
+      params.permit(:name, :description, :rating, :image, :city_id)
     end
   end
 end

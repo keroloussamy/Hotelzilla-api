@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_131300) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_10_205015) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,23 +34,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_131300) do
   create_table "reservations", force: :cascade do |t|
     t.date "date"
     t.bigint "user_id", null: false
-    t.bigint "room_id", null: false
+    t.bigint "hotel_id", null: false
+    t.bigint "room_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_reservations_on_room_id"
+    t.index ["hotel_id"], name: "index_reservations_on_hotel_id"
+    t.index ["room_type_id"], name: "index_reservations_on_room_type_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
+  create_table "room_types", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.float "price"
-    t.integer "capacity"
-    t.string "image"
-    t.bigint "hotel_id", null: false
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,13 +56,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_131300) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "role", default: "User"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role", default: "User"
   end
 
   add_foreign_key "hotels", "cities"
-  add_foreign_key "reservations", "rooms"
+  add_foreign_key "reservations", "hotels"
+  add_foreign_key "reservations", "room_types"
   add_foreign_key "reservations", "users"
-  add_foreign_key "rooms", "hotels"
 end
