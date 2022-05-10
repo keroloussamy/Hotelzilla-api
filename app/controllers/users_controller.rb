@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
-  # before_action :set_user, only: %i[show destroy]
 
   # GET /users
   def index
@@ -42,10 +41,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :username, :email, :password) # role
+    params.permit(:name, :username, :email, :password)
   end
-
-  # def set_user
-  #   @user = User.find(params[:id])
-  # end
 end
