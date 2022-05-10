@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_10_205015) do
   end
 
   create_table "room_types", force: :cascade do |t|
-    t.string "type"
+    t.string "name"
     t.string "description"
     t.integer "price"
     t.datetime "created_at", null: false
