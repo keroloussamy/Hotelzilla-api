@@ -6,5 +6,4 @@ class Hotel < ApplicationRecord
   has_many :room_types, through: :reservations
 
   has_one_attached :image
-  
 end
