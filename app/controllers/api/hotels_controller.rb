@@ -3,7 +3,8 @@ module Api
     skip_before_action :authenticate_request, only: [:index, :show]
 
     def index
-      @hotels = Hotel.all
+      @city = City.find(params[:city_id])
+      @hotels = @city.hotels
       render json: @hotels
     end
 
