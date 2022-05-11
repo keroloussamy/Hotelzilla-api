@@ -1,8 +1,13 @@
 module Api
   class HotelsController < ApplicationController
-    skip_before_action :authenticate_request, only: %i[index show]
+    skip_before_action :authenticate_request, only: [:index, :show]
 
     def index
+      @hotels = Hotel.all
+      render json: @hotels
+    end
+
+    def hotel_by_city
       @city = City.find(params[:city_id])
       @hotels = @city.hotels
       render json: @hotels
