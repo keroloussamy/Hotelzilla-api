@@ -19,7 +19,7 @@ module Api
       @hotel = Hotel.new(hotel_params)
 
       if @hotel.save
-        render json: @hotel, status: :created, location: api_hotel_path(@hotel)
+        render json: @hotel, status: :created
       else
         render json: @hotel.errors, status: :unprocessable_entity
       end
