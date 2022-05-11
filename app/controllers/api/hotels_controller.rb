@@ -7,6 +7,12 @@ module Api
       render json: @hotels
     end
 
+    def hotel_by_city
+      @city = City.find(params[:id])
+      @hotels = @city.hotels
+      render json: @hotels
+    end
+
     # GET /hotels/1
     def show
       @hotel = Hotel.find(params[:id])
@@ -18,7 +24,7 @@ module Api
       @hotel = Hotel.new(hotel_params)
 
       if @hotel.save
-        render json: @hotel, status: :created, location: api_hotel_path(@hotel)
+        render json: @hotel, status: :created
       else
         render json: @hotel.errors, status: :unprocessable_entity
       end
