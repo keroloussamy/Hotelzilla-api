@@ -8,7 +8,7 @@ module Api
     end
 
     def hotel_by_city
-      @city = City.find(params[:city_id])
+      @city = City.find(params[:id])
       @hotels = @city.hotels
       render json: @hotels
     end
