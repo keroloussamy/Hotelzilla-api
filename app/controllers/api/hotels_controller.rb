@@ -1,6 +1,6 @@
 module Api
   class HotelsController < ApplicationController
-    skip_before_action :authenticate_request, only: [:index, :show]
+    skip_before_action :authenticate_request, only: %i[index show]
 
     def index
       @city = City.find(params[:city_id])
