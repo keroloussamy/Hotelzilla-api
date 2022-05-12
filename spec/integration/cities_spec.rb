@@ -6,7 +6,6 @@ RSpec.describe 'Cities API' do
     get 'Retrieves cities' do
       tags 'Cities'
       produces 'application/json', 'application/xml'
-      parameter name: :name, in: :path, type: :string
 
       response '200', 'name found' do
         schema type: :object,
@@ -15,12 +14,10 @@ RSpec.describe 'Cities API' do
                },
                required: ['name']
 
-        let(:name) { City.create(name: 'Kampala') }
         run_test!
       end
 
       response '404', 'pet not found' do
-        let(:name) { 'invalid' }
         run_test!
       end
     end
