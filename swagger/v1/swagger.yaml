@@ -1,20 +1,50 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
+  title: Hotelzilla API
   version: v1
+  description: This is the first version of Hottelzilla API
 paths:
-  api/cities:
+  "/auth/login":
+    post:
+      summary: Creates a token
+      tags:
+      - Login
+      parameters: []
+      responses:
+        '201':
+          description: token created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/api/cities":
     get:
       summary: Retrieves cities
       tags:
       - Cities
-      parameters:
-      - name: name
-        in: path
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: name found
@@ -37,7 +67,7 @@ paths:
                 - name
         '404':
           description: pet not found
-  api/hotels:
+  "/api/hotels":
     post:
       summary: Creates a hotel
       tags:
@@ -91,11 +121,118 @@ paths:
               - image
               - city_id
     get:
+      summary: Retrieves all hotels
+      tags:
+      - Hotels
+      responses:
+        '200':
+          description: hotels found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+        '404':
+          description: hotels not found
+  "/api/hotels/{id}":
+    get:
       summary: Retrieves a hotel
       tags:
       - Hotels
       parameters:
-      - name: hotel
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: hotel found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+        '404':
+          description: hotels not found
+    delete:
+      summary: Delete a hotel
+      tags:
+      - Hotels
+      parameters:
+      - name: id
         in: path
         required: true
         schema:
@@ -146,8 +283,473 @@ paths:
                 - city_id
         '404':
           description: hotels not found
+    patch:
+      summary: Update hotel data
+      tags:
+      - Hotels
+      parameters: []
+      responses:
+        '201':
+          description: hotel updated
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+                image:
+                  type: string
+                city_id:
+                  type: integer
+              required:
+              - name
+              - description
+              - rating
+              - image
+              - city_id
+          application/xml:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+                image:
+                  type: string
+                city_id:
+                  type: integer
+              required:
+              - name
+              - description
+              - rating
+              - image
+              - city_id
+  "/api/hotelbycity/{id}":
+    get:
+      summary: Retrieves a hotel according to its city
+      tags:
+      - Hotels
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: hotels found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+        '404':
+          description: hotels not found
+  "/api/reservations":
+    get:
+      summary: Retrieves reservations
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: name found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date:
+                    type: string
+                  room_type_id:
+                    type: integer
+                  hotel_id:
+                    type: id
+                required:
+                - date
+                - room_type_id
+                - hotel_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  date:
+                    type: string
+                  room_type_id:
+                    type: integer
+                  hotel_id:
+                    type: id
+                required:
+                - date
+                - room_type_id
+                - hotel_id
+        '404':
+          description: pet not found
+    post:
+      summary: Creates a reservation
+      tags:
+      - Reservations
+      parameters: []
+      responses:
+        '201':
+          description: Reservation created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                room_type_id:
+                  type: integer
+                hotel_id:
+                  type: integer
+              required:
+              - name
+              - room_type_id
+              - hotel_id
+          application/xml:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                room_type_id:
+                  type: integer
+                hotel_id:
+                  type: integer
+              required:
+              - name
+              - room_type_id
+              - hotel_id
+  "/api/room_types":
+    get:
+      summary: Retrieves types of rooms
+      tags:
+      - Room Types
+      responses:
+        '200':
+          description: Room Types found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: integer
+                required:
+                - name
+                - description
+                - price
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: integer
+                required:
+                - name
+                - description
+                - price
+        '404':
+          description: Room Types not found
+  "/users":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - username
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - username
+              - email
+              - password
+    get:
+      summary: Retrieves all users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: users found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - username
+                - email
+                - password
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - username
+                - email
+                - password
+        '404':
+          description: users not found
+  "/users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - username
+                - email
+                - password
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - username
+                - email
+                - password
+        '404':
+          description: users not found
+    delete:
+      summary: Delete a user
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: users found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - username
+                - email
+                - password
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
+                required:
+                - name
+                - username
+                - email
+                - password
+        '404':
+          description: user not found
+    patch:
+      summary: Update user data
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user updated
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - username
+              - email
+              - password
+          application/xml:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - name
+              - username
+              - email
+              - password
 servers:
-- url: https://{defaultHost}
+- url: https://hotelzilla-api.herokuapp.com
   variables:
     defaultHost:
-      default: www.example.com
+      default: https://hotelzilla-api.herokuapp.com
