@@ -16,16 +16,17 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'Hotelzilla API',
+        version: 'v1',
+        description: 'This is the first version of Hottelzilla API'
       },
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'https://hotelzilla-api.herokuapp.com',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'https://hotelzilla-api.herokuapp.com'
             }
           }
         }
