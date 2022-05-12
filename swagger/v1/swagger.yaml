@@ -37,6 +37,115 @@ paths:
                 - name
         '404':
           description: pet not found
+  api/hotels:
+    post:
+      summary: Creates a hotel
+      tags:
+      - Hotels
+      parameters: []
+      responses:
+        '201':
+          description: hotel created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+                image:
+                  type: string
+                city_id:
+                  type: integer
+              required:
+              - name
+              - description
+              - rating
+              - image
+              - city_id
+          application/xml:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                rating:
+                  type: integer
+                image:
+                  type: string
+                city_id:
+                  type: integer
+              required:
+              - name
+              - description
+              - rating
+              - image
+              - city_id
+    get:
+      summary: Retrieves a hotel
+      tags:
+      - Hotels
+      parameters:
+      - name: hotel
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: hotels found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  rating:
+                    type: integer
+                  image:
+                    type: string
+                  city_id:
+                    type: integer
+                required:
+                - name
+                - description
+                - rating
+                - image
+                - city_id
+        '404':
+          description: hotels not found
 servers:
 - url: https://{defaultHost}
   variables:
