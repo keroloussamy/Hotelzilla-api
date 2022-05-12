@@ -2,7 +2,7 @@ require 'swagger_helper'
 # require 'rspec'
 
 RSpec.describe 'Cities API' do
-  path 'api/cities' do
+  path '/api/cities' do
     get 'Retrieves cities' do
       tags 'Cities'
       produces 'application/json', 'application/xml'
