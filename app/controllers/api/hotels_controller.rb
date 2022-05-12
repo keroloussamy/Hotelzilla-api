@@ -44,7 +44,7 @@ module Api
     def destroy
       @hotel = Hotel.find(params[:id])
       @hotel.destroy
-      render json: { hotel: @hotel, message: 'Hotel has successfully been deleted' }
+      render json: { message: 'Hotel has successfully been deleted' }
     end
 
     private
