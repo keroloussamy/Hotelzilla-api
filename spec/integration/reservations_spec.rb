@@ -14,7 +14,7 @@ RSpec.describe 'Reservations API' do
                  room_type_id: { type: :integer },
                  hotel_id: { type: :id }
                },
-               required: ['date', 'room_type_id', 'hotel_id']
+               required: %w[date room_type_id hotel_id]
 
         run_test!
       end
@@ -26,7 +26,6 @@ RSpec.describe 'Reservations API' do
   end
 
   path '/api/reservations' do
-
     post 'Creates a reservation' do
       tags 'Reservations'
       consumes 'application/json', 'application/xml'
@@ -38,20 +37,20 @@ RSpec.describe 'Reservations API' do
           hotel_id: { type: :integer }
 
         },
-        required: [ 'name', 'room_type_id', 'hotel_id' ]
+        required: %w[name room_type_id hotel_id]
       }
 
       response '201', 'Reservation created' do
-        let(:reservation) {   { name:'Single', description: 'A room assigned to one person. May have one or more beds.', price: 300} }
+        let(:reservation) do
+          { name: 'Single', description: 'A room assigned to one person. May have one or more beds.', price: 300 }
+        end
         run_test!
       end
 
       response '422', 'invalid request' do
-        let(:reservation) { 'foo' } 
+        let(:reservation) { 'foo' }
         run_test!
       end
     end
   end
-
-
 end

@@ -18,7 +18,7 @@ RSpec.configure do |config|
       info: {
         title: 'Hotelzilla API',
         version: 'v1',
-        description: 'This is the first version of Hottelzilla API. Before you can access most of the functionality of the api, you have to first create a user with the create user post method. After that, go to the login get method and enter your email and password. There after, you will receive a token that you will include in your header to access other functions of the api.'
+        description: 'This is the first version of Hottelzilla API.'
       },
       paths: {},
       servers: [

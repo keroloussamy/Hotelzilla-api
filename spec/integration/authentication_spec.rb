@@ -1,33 +1,30 @@
 require 'swagger_helper'
 # require 'rspec'
 
-
 RSpec.describe 'Login API' do
+  path '/auth/login' do
+    post 'Creates a token' do
+      tags 'Login'
+      consumes 'application/json', 'application/xml'
+      parameter name: :login, in: :body, schema: {
+        type: :object,
+        properties: {
+          email: { type: :string },
+          password: { type: :string }
 
-path '/auth/login' do
+        },
+        required: %w[email password]
+      }
 
-  post 'Creates a token' do
-    tags 'Login'
-    consumes 'application/json', 'application/xml'
-    parameter name: :login, in: :body, schema: {
-      type: :object,
-      properties: {
-        email: { type: :string },
-        password: { type: :string }
+      response '201', 'token created' do
+        let(:login) { { email: 'Anja@gmail.com', password: 'Anja' } }
+        run_test!
+      end
 
-      },
-      required: [ 'email', 'password' ]
-    }
-
-    response '201', 'token created' do
-      let(:login) { { email: 'Anja@gmail.com', password: 'Anja' } }
-      run_test!
-    end
-
-    response '422', 'invalid request' do
-      let(:login) { 'foo' } 
-      run_test!
+      response '422', 'invalid request' do
+        let(:login) { 'foo' }
+        run_test!
+      end
     end
   end
-end
 end
