@@ -37,28 +37,26 @@ RSpec.describe 'Users API' do
     end
   end
 
-  path '/api/hotels' do
+  path '/api/users' do
 
-    get 'Retrieves all hotels' do
-      tags 'Hotels'
+    get 'Retrieves all users' do
+      tags 'Users'
       produces 'application/json', 'application/xml'
-      # parameter name: :hotel, :in => :path, :type => :string
 
-      response '200', 'hotels found' do
+      response '200', 'users found' do
         schema type: :object,
           properties: {
             name: { type: :string },
-            description: { type: :string },
-            rating: { type: :integer },
-            image: { type: :string },
-            city_id: { type: :integer }
+            username: { type: :string },
+            email: { type: :string },
+            password: { type: :string }
           },
-          required: [ 'name', 'description', 'rating', 'image', 'city_id' ]
+          required: [ 'name', 'username', 'email', 'password' ]
 
         run_test!
       end
 
-      response '404', 'hotels not found' do
+      response '404', 'users not found' do
         run_test!
       end
     end
