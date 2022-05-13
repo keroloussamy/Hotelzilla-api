@@ -14,6 +14,22 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.yaml' => {
+      components: {
+        securitySchemes: {
+          basic_auth: {
+            type: :http,
+            scheme: :basic
+          },
+          ApiKeyAuth: {
+            type: :apiKey,
+            name: 'Authorization',
+            in: :header
+          }
+        }
+      },
+      security: {
+        ApiKeyAuth: []
+      },
       openapi: '3.0.1',
       info: {
         title: 'Hotelzilla API',
