@@ -6,6 +6,8 @@ RSpec.describe 'Hotels API' do
     post 'Creates a hotel' do
       tags 'Hotels'
       consumes 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :hotel, in: :body, schema: {
         type: :object,
         properties: {
@@ -37,8 +39,6 @@ RSpec.describe 'Hotels API' do
     get 'Retrieves all hotels' do
       tags 'Hotels'
       produces 'application/json', 'application/xml'
-      # parameter name: :hotel, :in => :path, :type => :string
-
       response '200', 'hotels found' do
         schema type: :object,
                properties: {
@@ -63,6 +63,7 @@ RSpec.describe 'Hotels API' do
     get 'Retrieves a hotel' do
       tags 'Hotels'
       produces 'application/json', 'application/xml'
+     
       parameter name: :id, in: :path, type: :string
 
       response '200', 'hotel found' do
@@ -94,6 +95,8 @@ RSpec.describe 'Hotels API' do
     delete 'Delete a hotel' do
       tags 'Hotels'
       produces 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :id, in: :path, type: :string
 
       response '200', 'hotels found' do
@@ -125,6 +128,8 @@ RSpec.describe 'Hotels API' do
     patch 'Update hotel data' do
       tags 'Hotels'
       consumes 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :id, in: :body, schema: {
         type: :object,
         properties: {
@@ -156,6 +161,8 @@ RSpec.describe 'Hotels API' do
     get 'Retrieves a hotel according to its city' do
       tags 'Hotels'
       produces 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :id, in: :path, type: :string
 
       response '200', 'hotels found' do

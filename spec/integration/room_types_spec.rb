@@ -5,6 +5,7 @@ RSpec.describe 'RoomTypes API' do
     get 'Retrieves types of rooms' do
       tags 'Room Types'
       produces 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
 
       response '200', 'Room Types found' do
         schema type: :object,

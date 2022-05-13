@@ -40,6 +40,7 @@ RSpec.describe 'Users API' do
     get 'Retrieves all users' do
       tags 'Users'
       produces 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
 
       response '200', 'users found' do
         schema type: :object,
@@ -65,6 +66,7 @@ RSpec.describe 'Users API' do
       tags 'Users'
       produces 'application/json', 'application/xml'
       parameter name: :id, in: :path, type: :string
+      security [ApiKeyAuth: []]
 
       response '200', 'user found' do
         schema type: :object,
@@ -98,6 +100,8 @@ RSpec.describe 'Users API' do
     delete 'Delete a user' do
       tags 'Users'
       produces 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :id, in: :path, type: :string
 
       response '200', 'users found' do
@@ -132,6 +136,8 @@ RSpec.describe 'Users API' do
     patch 'Update user data' do
       tags 'Users'
       consumes 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :id, in: :body, schema: {
         type: :object,
         properties: {

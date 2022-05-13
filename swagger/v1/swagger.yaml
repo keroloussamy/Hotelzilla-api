@@ -1,13 +1,15 @@
 ---
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header
 openapi: 3.0.1
 info:
   title: Hotelzilla API
   version: v1
-  description: This is the first version of Hottelzilla API. Before you can access
-    most of the functionality of the api, you have to first create a user with the
-    create user post method. After that, go to the login get method and enter your
-    email and password. There after, you will receive a token that you will include
-    in your header to access other functions of the api.
+  description: This is the first version of Hottelzilla API.
 paths:
   "/auth/login":
     post:
@@ -76,6 +78,8 @@ paths:
       summary: Creates a hotel
       tags:
       - Hotels
+      security:
+      - ApiKeyAuth: []
       parameters: []
       responses:
         '201':
@@ -235,6 +239,8 @@ paths:
       summary: Delete a hotel
       tags:
       - Hotels
+      security:
+      - ApiKeyAuth: []
       parameters:
       - name: id
         in: path
@@ -291,6 +297,8 @@ paths:
       summary: Update hotel data
       tags:
       - Hotels
+      security:
+      - ApiKeyAuth: []
       parameters: []
       responses:
         '201':
@@ -344,6 +352,8 @@ paths:
       summary: Retrieves a hotel according to its city
       tags:
       - Hotels
+      security:
+      - ApiKeyAuth: []
       parameters:
       - name: id
         in: path
@@ -401,6 +411,8 @@ paths:
       summary: Retrieves reservations
       tags:
       - Reservations
+      security:
+      - ApiKeyAuth: []
       responses:
         '200':
           description: name found
@@ -439,6 +451,8 @@ paths:
       summary: Creates a reservation
       tags:
       - Reservations
+      security:
+      - ApiKeyAuth: []
       parameters: []
       responses:
         '201':
@@ -480,6 +494,8 @@ paths:
       summary: Retrieves types of rooms
       tags:
       - Room Types
+      security:
+      - ApiKeyAuth: []
       responses:
         '200':
           description: Room Types found
@@ -565,6 +581,8 @@ paths:
       summary: Retrieves all users
       tags:
       - Users
+      security:
+      - ApiKeyAuth: []
       responses:
         '200':
           description: users found
@@ -616,6 +634,8 @@ paths:
         required: true
         schema:
           type: string
+      security:
+      - ApiKeyAuth: []
       responses:
         '200':
           description: user found
@@ -660,6 +680,8 @@ paths:
       summary: Delete a user
       tags:
       - Users
+      security:
+      - ApiKeyAuth: []
       parameters:
       - name: id
         in: path
@@ -710,6 +732,8 @@ paths:
       summary: Update user data
       tags:
       - Users
+      security:
+      - ApiKeyAuth: []
       parameters: []
       responses:
         '201':

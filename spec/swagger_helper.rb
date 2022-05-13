@@ -16,10 +16,7 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       components: {
         securitySchemes: {
-          basic_auth: {
-            type: :http,
-            scheme: :basic
-          },
+
           ApiKeyAuth: {
             type: :apiKey,
             name: 'Authorization',
@@ -27,9 +24,7 @@ RSpec.configure do |config|
           }
         }
       },
-      security: {
-        ApiKeyAuth: []
-      },
+
       openapi: '3.0.1',
       info: {
         title: 'Hotelzilla API',

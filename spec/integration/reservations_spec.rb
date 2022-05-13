@@ -6,6 +6,7 @@ RSpec.describe 'Reservations API' do
     get 'Retrieves reservations' do
       tags 'Reservations'
       produces 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
 
       response '200', 'name found' do
         schema type: :object,
@@ -29,6 +30,8 @@ RSpec.describe 'Reservations API' do
     post 'Creates a reservation' do
       tags 'Reservations'
       consumes 'application/json', 'application/xml'
+      security [ApiKeyAuth: []]
+
       parameter name: :reservation, in: :body, schema: {
         type: :object,
         properties: {
