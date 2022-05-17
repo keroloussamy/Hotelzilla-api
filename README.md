@@ -43,6 +43,7 @@ To get a local copy up and running follow these simple example steps.
 ## Deployment
 
 [App link](https://hotelzilla-api.herokuapp.com).
+[API documentation Link](https://hotelzilla-api.herokuapp.com/api-docs/index.html)
 
 ## Authors
 👤 **Kerolous Samy**
