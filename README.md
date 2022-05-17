@@ -1,4 +1,4 @@
-# Hello Rails backend
+# Hotelzilla-api
 
 > This is the back-end API for a hotel reservation app and here is the [Front project link](https://github.com/Anjacodes/Hotelzilla-UI).
 > It has endpoints for users / hotels / cities / rooms types to allow users to do
