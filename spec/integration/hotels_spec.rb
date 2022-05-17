@@ -63,7 +63,7 @@ RSpec.describe 'Hotels API' do
     get 'Retrieves a hotel' do
       tags 'Hotels'
       produces 'application/json', 'application/xml'
-     
+
       parameter name: :id, in: :path, type: :string
 
       response '200', 'hotel found' do
