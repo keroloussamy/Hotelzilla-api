@@ -56,6 +56,15 @@ Because we created 2 different repositories for front end and back end, you can 
 
 [Kanban board](https://github.com/Anjacodes/Hotelzilla-UI/projects/1)
 
+## Team members
+
+This full-stack project was developed by a team of 5 people:
+- [Kerolous Samy](https://github.com/keroloussamy)
+- [Lucas Masaba](https://github.com/Lucas-Masaba)
+- [Anja Schmidt](https://github.com/Anjacodes)
+- [George Magdy](https://github.com/gemmen29)
+- [William Morales](https://github.com/williamrolando88)
+
 ## Deployment
 
 [App Link](https://hotelzilla-api.herokuapp.com)
