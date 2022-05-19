@@ -39,6 +39,22 @@ To get a local copy up and running follow these simple example steps.
 - Run the `rspec` command in this case over the path of `spec/`, the resulting command will look like this: `rspec spec/`.
 - If you want to run the tests over the entire project, you can execute the following command: `rspec`
 
+## Kanban board
+
+### Project Kanban board
+
+You can check at the starting version of the kanban board and how it evolved as we continued implementing the required features in the following links:
+
+[Kanban board](https://github.com/keroloussamy/Hotelzilla-api/projects/1)
+
+[First kanban board](https://user-images.githubusercontent.com/75140420/166821799-a532f46b-eb63-4027-bf82-1f99fa8c84be.png)
+
+
+### Front-end Kanban board
+
+Because we created 2 different repositories for front end and back end, you can see at the dedicated Front-end Kanban board in the following link:
+
+[Kanban board](https://github.com/Anjacodes/Hotelzilla-UI/projects/1)
 
 ## Deployment
 
